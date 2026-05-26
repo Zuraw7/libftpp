@@ -6,7 +6,8 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++17
 SRC_PATH = sources/
 OBJ_PATH = objects/
 
-SRCS = sources/dataStructures/data_buffer.cpp
+SRCS = sources/dataStructures/data_buffer.cpp \
+       sources/designPatterns/memento.cpp
 OBJS = $(patsubst $(SRC_PATH)%.cpp, $(OBJ_PATH)%.o, $(SRCS))
 
 all: $(NAME)
