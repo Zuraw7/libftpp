@@ -92,7 +92,8 @@ public:
 		size_t index = m_freeSlots.at(m_freeSlots.size() - 1);
 		m_freeSlots.pop_back();
 
-		new (&m_storage.at(index).data) TType(std::forward<TArgs>(p_args)...);
+		// new (&m_storage.at(index).data) TType(std::forward<TArgs>(p_args)...);
+		new (&m_storage.at(index).data) TType(p_args...);
 		return Object(this, index);
 	}
 

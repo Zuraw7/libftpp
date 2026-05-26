@@ -3,19 +3,23 @@ NAME = libftpp.a
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++17
 
-SRCS =
-OBJS = $(SRCS:.cpp=.o)
+SRC_PATH = sources/
+OBJ_PATH = objects/
+
+SRCS = sources/dataStructures/data_buffer.cpp
+OBJS = $(patsubst $(SRC_PATH)%.cpp, $(OBJ_PATH)%.o, $(SRCS))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
-%.o: %.cpp
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
+	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJ_PATH)
 
 fclean: clean
 	rm -f $(NAME)
