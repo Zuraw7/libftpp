@@ -7,7 +7,8 @@ SRC_PATH = sources/
 OBJ_PATH = objects/
 
 SRCS = sources/dataStructures/data_buffer.cpp \
-       sources/designPatterns/memento.cpp
+       sources/designPatterns/memento.cpp \
+	   sources/iostream/thread_safe_iostream.cpp
 OBJS = $(patsubst $(SRC_PATH)%.cpp, $(OBJ_PATH)%.o, $(SRCS))
 
 all: $(NAME)
