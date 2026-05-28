@@ -5,6 +5,7 @@
 #include "designPatterns/design_patterns.hpp"
 #include "iostream/thread_safe_iostream.hpp"
 #include "mathematics/mathematics.hpp"
+#include "network/network.hpp"
 #include "thread/threading.hpp"
 
 #endif
