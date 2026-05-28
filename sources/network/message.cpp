@@ -27,10 +27,18 @@ Message &Message::operator>>(std::string &value) {
     return *this;
 }
 
-int Message::type() {
+int Message::type() const {
     return m_type;
 }
 
 void Message::clear() {
     m_msgBuffer.clear();
+}
+
+DataBuffer Message::getMessageBuffer() const {
+    return m_msgBuffer;
+}
+
+void Message::uploadBuffer(const std::vector<std::byte>& data) {
+    m_msgBuffer.setBuffer(data);
 }

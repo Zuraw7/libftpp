@@ -2,6 +2,7 @@
 #define DATA_BUFFER_HPP
 
 #include <cstddef>
+#include <cstdint>
 #include <cstring>
 #include <stdexcept>
 #include <vector>
@@ -57,6 +58,15 @@ public:
 
     /** @brief Clears all data from the buffer and resets the read offset. */
     void clear();
+
+    /** @brief Returns a pointer to the raw bytes in the buffer. */                                                                                                                                                                                   
+    const std::byte* data() const;                                                                                                                                                                                                                    
+
+    /** @brief Returns the number of bytes in the buffer. */                                                                                                                                                                                          
+    size_t size() const;  
+
+    /** @brief Replaces the buffer contents with the given bytes and resets the read offset. */
+    void setBuffer(const std::vector<std::byte>& data);
 
 private:
     std::vector<std::byte> m_buffer;

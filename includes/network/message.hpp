@@ -46,10 +46,16 @@ public:
     Message& operator>>(std::string& value);
 
     /** @brief Returns the message type set in the constructor. */
-    int type();
+    int type() const;
     
     /** @brief Clears the payload buffer and resets the read offset. The message type is preserved. */
     void clear();
+
+    /** @brief Returns a copy of the internal payload buffer.*/
+    DataBuffer getMessageBuffer() const;
+
+    /** @brief Replaces the payload buffer with raw bytes. */
+    void uploadBuffer(const std::vector<std::byte>& data);
 
 private:
     Type m_type;
