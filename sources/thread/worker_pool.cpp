@@ -1,5 +1,4 @@
 #include "../../includes/thread/worker_pool.hpp"
-#include <mutex>
 #include <string>
 
 WorkerPool::WorkerPool(int threadNb) {

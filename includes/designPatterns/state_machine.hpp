@@ -3,10 +3,9 @@
 
 #include <functional>
 #include <map>
-#include <stdexcept>
-#include <utility>
 #include <set>
 #include <stdexcept>
+#include <utility>
 
 template<typename TState>
 class StateMachine {

@@ -2,11 +2,11 @@
 #define PERSISTENT_WORKER_HPP
 
 #include "thread.hpp"
-#include <unordered_map>
-#include <string>
+#include <atomic>
 #include <functional>
 #include <mutex>
-#include <atomic>
+#include <string>
+#include <unordered_map>
 
 /**
  * @brief A thread that continuously executes a set of named tasks in a loop.

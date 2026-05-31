@@ -1,8 +1,6 @@
 #ifndef RANDOM_2D_COORDINATE_GENERATOR_HPP
 #define RANDOM_2D_COORDINATE_GENERATOR_HPP
 
-#include <random>
-
 /**
  * @brief Generates pseudo-random numbers based on 2D coordinates.
  *
