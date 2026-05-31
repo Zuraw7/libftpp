@@ -1,4 +1,6 @@
+.cache
+compile_commands.json
 en.subject.pdf
-main.cpp
 libftpp.a
+main.cpp
 objects/

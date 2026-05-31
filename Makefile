@@ -9,6 +9,8 @@ OBJ_PATH = objects/
 SRCS = sources/dataStructures/data_buffer.cpp \
 	   sources/designPatterns/memento.cpp \
 	   sources/iostream/thread_safe_iostream.cpp \
+	   sources/mathematics/perlin_noise_2D.cpp \
+	   sources/mathematics/random_2D_coordinate_generator.cpp \
 	   sources/thread/persistent_worker.cpp \
 	   sources/thread/thread.cpp \
 	   sources/thread/worker_pool.cpp
