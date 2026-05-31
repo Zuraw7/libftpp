@@ -11,9 +11,12 @@ SRCS = sources/dataStructures/data_buffer.cpp \
 	   sources/iostream/thread_safe_iostream.cpp \
 	   sources/mathematics/perlin_noise_2D.cpp \
 	   sources/mathematics/random_2D_coordinate_generator.cpp \
+<<<<<<< HEAD
 	   sources/network/client.cpp \
 	   sources/network/message.cpp \
 	   sources/network/server.cpp \
+=======
+>>>>>>> 7975600 (Added Random2DCoordinateGenerator class)
 	   sources/thread/persistent_worker.cpp \
 	   sources/thread/thread.cpp \
 	   sources/thread/worker_pool.cpp
