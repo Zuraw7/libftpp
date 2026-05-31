@@ -2,12 +2,12 @@
 #define WORKER_POOL_HPP
 
 #include "thread.hpp"
+#include <atomic>
 #include <condition_variable>
 #include <functional>
 #include <mutex>
-#include <vector>
 #include <queue>
-#include <atomic>
+#include <vector>
 
 /**
  * @brief Manages a pool of worker threads that execute jobs concurrently.

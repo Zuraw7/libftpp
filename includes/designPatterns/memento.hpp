@@ -3,7 +3,6 @@
 
 #include "../dataStructures/data_buffer.hpp"
 
-
 /**
  * @brief Base class enabling save/load state functionality via the Memento pattern.
  *

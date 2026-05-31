@@ -1,5 +1,4 @@
 #include "../../includes/thread/persistent_worker.hpp"
-#include <mutex>
 
 PersistentWorker::PersistentWorker(const std::string &threadPrefix)
     : m_thread(threadPrefix, [this](){
