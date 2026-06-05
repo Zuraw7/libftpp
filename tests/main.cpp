@@ -28,6 +28,12 @@ int main() {
 	client_tests();
 	server_tests();
 
+	std::cout << "\n=== Threading ===\n";
+	thread_tests();
+	persistent_worker_tests();
+	thread_safe_queue_tests();
+	worker_pool_tests();
+
 	std::cout << "\n" << g_pass << " passed, " << g_fail << " failed\n";
 	return g_fail ? 1 : 0;
 }

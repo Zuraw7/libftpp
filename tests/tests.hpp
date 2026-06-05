@@ -28,4 +28,10 @@ void message_tests();
 void client_tests();
 void server_tests();
 
+// Threading
+void thread_tests();
+void persistent_worker_tests();
+void thread_safe_queue_tests();
+void worker_pool_tests();
+
 #endif
