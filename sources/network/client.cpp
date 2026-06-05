@@ -1,5 +1,10 @@
 #include "../../includes/network/client.hpp"
+#include "../../includes/network/net_utils.hpp"
+#include <cstddef>
+#include <cstring>
+#include <stdexcept>
 #include <sys/socket.h>
+#include <vector>
 
 void Client::connect(const std::string& address, const size_t& port) {
     struct sockaddr_in serv_addr;
@@ -30,6 +35,7 @@ void Client::connect(const std::string& address, const size_t& port) {
 void Client::disconnect() {
     close(m_socket);
     m_socket = -1;
+    m_recvBuffer.clear();
 }
 
 void Client::defineAction(const Message::Type& messageType, const std::function<void(const Message& msg)>& action) {
@@ -37,36 +43,21 @@ void Client::defineAction(const Message::Type& messageType, const std::function<
 }
 
 void Client::send(const Message& message) {
-    DataBuffer buffer = message.getMessageBuffer();
-    Message::Type type = message.type();
-    size_t size = buffer.size();
-    const std::byte *payload = buffer.data();
 
-    if (::send(m_socket, &type, sizeof(Message::Type), 0) < 0)
-        throw std::runtime_error("Client: send failed");
-    if (::send(m_socket, &size, sizeof(size_t), 0) < 0)
-        throw std::runtime_error("Client: send failed");
-    if (::send(m_socket, payload, size, 0) < 0)
-        throw std::runtime_error("Client: send failed");
+    std::vector<std::byte> msg = net::frame(message);
+    if (!net::sendAll(m_socket, msg))
+        throw std::runtime_error("Client: failed to send message");
 }
 
 void Client::update() {
-    Message::Type type;
-    size_t payloadSize;
+    if (!net::recvAvailable(m_socket, m_recvBuffer)) {
+        disconnect();
+        return;
+    }
 
-    while (::recv(m_socket, &type, sizeof(type), MSG_DONTWAIT) > 0) {
-        if (::recv(m_socket, &payloadSize, sizeof(payloadSize), 0) <= 0)
-            return;
-
-        std::vector<std::byte> payload(payloadSize);
-        if (::recv(m_socket, payload.data(), payloadSize, 0) <= 0)
-            return;
-
-        Message msg(type);
-        msg.uploadBuffer(payload);
-
-        auto it = m_actions.find(type);
+    while (auto msg = net::unframe(m_recvBuffer)) {
+        auto it = m_actions.find(msg->type());
         if (it != m_actions.end())
-            it->second(msg);
+            it->second(msg.value());
     }
 }

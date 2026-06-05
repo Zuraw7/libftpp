@@ -2,12 +2,14 @@
 #define CLIENT_HPP
 
 #include "message.hpp"
+#include <cstddef>
 #include <functional>
 #include <map>
 #include <netdb.h>
 #include <string>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <vector>
 
 /**
  * @brief TCP client for connecting to a server and exchanging typed messages.
@@ -15,10 +17,13 @@
  * Connect to a server, register handlers for specific message types via defineAction,
  * send messages with send, and call update regularly to process incoming messages.
  *
- * @var m_address  Address of the connected server.
- * @var m_port     Port of the connected server.
- * @var m_socket   File descriptor of the TCP socket.
- * @var m_actions  Map of message type to handler function.
+ * @var m_address    Address of the connected server.
+ * @var m_port       Port of the connected server.
+ * @var m_socket     File descriptor of the TCP socket.
+ * @var m_actions    Map of message type to handler function.
+ * @var m_recvBuffer Accumulating byte buffer holding bytes received from the
+ *                   socket until they form complete messages. Persists across
+ *                   update calls so partially received messages are not lost.
  */
 class Client {
 public:
@@ -26,7 +31,7 @@ public:
      *  @throws std::runtime_error if the socket cannot be created, host is unknown, or connection is refused. */
     void connect(const std::string& address, const size_t& port);
 
-    /** @brief Closes the connection to the server. */
+    /** @brief Closes the connection to the server and clears the receive buffer. */
     void disconnect();
 
     /** @brief Registers a handler to be called when a message of the given type is received.
@@ -38,7 +43,10 @@ public:
      *  @throws std::runtime_error if any part of the send fails. */
     void send(const Message& message);
 
-    /** @brief Processes all messages received since the last call and executes their registered actions. */
+    /** @brief Drains all bytes available on the socket, dispatches every complete
+     *         message to its registered action, and keeps any partial message
+     *         buffered for the next call. Disconnects if the server closed the
+     *         connection. */
     void update();
 
 private:
@@ -46,6 +54,7 @@ private:
     size_t m_port = 0;
     int m_socket = -1;
     std::map<Message::Type, std::function<void(const Message&)>> m_actions;
+    std::vector<std::byte> m_recvBuffer;
 };
 
 #endif

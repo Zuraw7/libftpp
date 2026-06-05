@@ -13,6 +13,7 @@ SRCS = sources/dataStructures/data_buffer.cpp \
 	   sources/mathematics/random_2D_coordinate_generator.cpp \
 	   sources/network/client.cpp \
 	   sources/network/message.cpp \
+	   sources/network/net_utils.cpp \
 	   sources/network/server.cpp \
 	   sources/thread/persistent_worker.cpp \
 	   sources/thread/thread.cpp \
