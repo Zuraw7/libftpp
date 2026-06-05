@@ -1,4 +1,5 @@
-NAME = libftpp.a
+LIB_DIR = lib/
+NAME = $(LIB_DIR)libftpp.a
 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++17
@@ -21,10 +22,18 @@ SRCS = sources/dataStructures/data_buffer.cpp \
 
 OBJS = $(patsubst $(SRC_PATH)%.cpp, $(OBJ_PATH)%.o, $(SRCS))
 
-all: $(NAME)
+DOXYGEN   = doxygen
+DOC_DIR   = docs
+DOC_INDEX = $(DOC_DIR)/html/index.html
+
+all: $(NAME) $(DOC_INDEX)
 
 $(NAME): $(OBJS)
+	@mkdir -p $(LIB_DIR)
 	ar rcs $(NAME) $(OBJS)
+
+$(DOC_INDEX):
+	@$(MAKE) --no-print-directory docs
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
 	@mkdir -p $(dir $@)
@@ -34,8 +43,24 @@ clean:
 	rm -rf $(OBJ_PATH)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(LIB_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+docs:
+	@if ! command -v $(DOXYGEN) >/dev/null 2>&1; then \
+		echo "doxygen not found - documentation not generated"; \
+		echo "  install with: sudo dnf install doxygen graphviz"; \
+	elif command -v dot >/dev/null 2>&1; then \
+		$(DOXYGEN) Doxyfile && \
+		echo "Documentation generated in $(DOC_DIR)/html/index.html"; \
+	else \
+		echo "graphviz (dot) not found - generating documentation without graphs"; \
+		( cat Doxyfile; echo "HAVE_DOT=NO" ) | $(DOXYGEN) - && \
+		echo "Documentation generated in $(DOC_DIR)/html/index.html"; \
+	fi
+
+docs-clean:
+	rm -rf $(DOC_DIR)
+
+.PHONY: all clean fclean re docs docs-clean

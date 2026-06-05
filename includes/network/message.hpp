@@ -13,9 +13,6 @@
  *
  * Supports trivially copyable types and std::string natively.
  * operator<< and operator>> can be chained.
- *
- * @var m_type      Integer identifying the message type.
- * @var m_msgBuffer Binary payload buffer.
  */
 class Message {
 public:
@@ -58,8 +55,8 @@ public:
     void uploadBuffer(const std::vector<std::byte>& data);
 
 private:
-    Type m_type;
-    DataBuffer m_msgBuffer;
+    Type m_type;             ///< Integer identifying the message type.
+    DataBuffer m_msgBuffer;  ///< Binary payload buffer.
 };
 
 #endif

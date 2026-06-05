@@ -13,7 +13,6 @@
  *
  * @tparam TEvent Type used to identify events (e.g. enum, std::string, int).
  *
- * @example
  * @code
  * Observer<std::string> obs;
  * obs.subscribe("on_click", []() { std::cout << "clicked!\n"; });

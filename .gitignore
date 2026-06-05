@@ -1,6 +1,8 @@
 .cache
+.vscode
 compile_commands.json
+docs/
 en.subject.pdf
-libftpp.a
+lib/libftpp.a
 main.cpp
 objects/

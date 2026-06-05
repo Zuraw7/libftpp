@@ -12,7 +12,6 @@
  *
  * @tparam TType Type to manage as a singleton.
  *
- * @example
  * @code
  * class GameManager : public Singleton<GameManager> {
  *     friend class Singleton<GameManager>;
