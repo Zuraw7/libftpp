@@ -17,4 +17,10 @@ void state_machine_tests();
 // IOStream
 void thread_safe_iostream_tests();
 
+// Mathematics
+void ivector2_tests();
+void ivector3_tests();
+void perlin_noise_2D_tests();
+void random_2D_coordinate_generator_tests();
+
 #endif
