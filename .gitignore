@@ -4,5 +4,6 @@ compile_commands.json
 docs/
 en.subject.pdf
 lib/libftpp.a
-main.cpp
+/main.cpp
 objects/
+run_tests

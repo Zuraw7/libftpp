@@ -28,6 +28,10 @@ DOXYGEN   = doxygen
 DOC_DIR   = docs
 DOC_INDEX = $(DOC_DIR)/html/index.html
 
+TEST_DIR  = tests
+TEST_BIN  = run_tests
+TEST_SRCS = $(shell find $(TEST_DIR) -name '*.cpp')
+
 all: $(NAME) $(DOC_INDEX)
 
 $(NAME): $(OBJS)
@@ -46,8 +50,13 @@ clean:
 
 fclean: clean
 	rm -rf $(LIB_DIR)
+	rm -f $(TEST_BIN)
 
 re: fclean all
+
+test: $(NAME)
+	$(CXX) $(CXXFLAGS) -I includes $(TEST_SRCS) $(NAME) -o $(TEST_BIN) -pthread
+	./$(TEST_BIN)
 
 docs:
 	@if ! command -v $(DOXYGEN) >/dev/null 2>&1; then \
@@ -65,4 +74,4 @@ docs:
 docs-clean:
 	rm -rf $(DOC_DIR)
 
-.PHONY: all clean fclean re docs docs-clean
+.PHONY: all clean fclean re test docs docs-clean
