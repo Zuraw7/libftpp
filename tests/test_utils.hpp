@@ -1,7 +1,6 @@
 #ifndef TEST_UTILS_HPP
 #define TEST_UTILS_HPP
 
-#include <cmath>
 #include <iostream>
 
 inline int g_pass = 0;
