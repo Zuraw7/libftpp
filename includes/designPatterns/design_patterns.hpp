@@ -2,6 +2,7 @@
 #define DESIGN_PATTERNS_HPP
 
 #include "memento.hpp"
+#include "observable_value.hpp"
 #include "observer.hpp"
 #include "singleton.hpp"
 #include "state_machine.hpp"

@@ -43,7 +43,7 @@ Individual modules can also be included directly, e.g.
 | Module | Header | Contents |
 | --- | --- | --- |
 | Data structures | `dataStructures/data_structures.hpp` | `DataBuffer` (binary serialization), `Pool<T>` (fixed-capacity object pool) |
-| Design patterns | `designPatterns/design_patterns.hpp` | `Memento`, `Observer`, `Singleton`, `StateMachine` |
+| Design patterns | `designPatterns/design_patterns.hpp` | `Memento`, `Observer`, `Singleton`, `StateMachine`, `ObservableValue<T>` |
 | IOStream | `iostream/thread_safe_iostream.hpp` | `ThreadSafeIOStream` + the thread-local `threadSafeCout` for prefixed, thread-safe output |
 | Mathematics | `mathematics/mathematics.hpp` | `IVector2`, `IVector3`, `PerlinNoise2D`, `Random2DCoordinateGenerator` |
 | Threading | `thread/threading.hpp` | `Thread`, `PersistentWorker`, `WorkerPool`, `ThreadSafeQueue<T>` |
