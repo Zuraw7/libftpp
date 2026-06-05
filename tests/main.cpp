@@ -5,6 +5,11 @@ int main() {
 
 	data_buffer_tests();
 	pool_tests();
+	memento_tests();
+	observable_value_tests();
+	observer_tests();
+	singleton_tests();
+	state_machine_tests();
 
 	std::cout << "\n" << g_pass << " passed, " << g_fail << " failed\n";
 	return g_fail ? 1 : 0;
