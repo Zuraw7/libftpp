@@ -2,7 +2,7 @@
 #include <ostream>
 
 std::mutex ThreadSafeIOStream::m_mutex;
-thread_local ThreadSafeIOStream threadSafeCount;
+thread_local ThreadSafeIOStream threadSafeCout;
 
 ThreadSafeIOStream::~ThreadSafeIOStream() {
     if (!m_buffer.str().empty()) {

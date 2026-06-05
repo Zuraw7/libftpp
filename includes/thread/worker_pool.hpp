@@ -17,7 +17,7 @@
  * before threads are joined.
  *
  * Jobs can be submitted in two ways - see addJob() overloads.
- * Inside jobs, use threadSafeCount for thread-safe output with the worker's
+ * Inside jobs, use threadSafeCout for thread-safe output with the worker's
  * name as prefix (e.g. "[worker_0] message").
  *
  * @var m_threads  Worker threads created on construction.
@@ -32,14 +32,14 @@
  *
  * // lambda
  * pool.addJob([]() {
- *     threadSafeCount << "hello from worker\n";
+ *     threadSafeCout << "hello from worker\n";
  * });
  *
  * // IJobs
  * class MyJob : public WorkerPool::IJobs {
  * public:
  *     void execute() override {
- *         threadSafeCount << "hello from IJobs\n";
+ *         threadSafeCout << "hello from IJobs\n";
  *     }
  * };
  * MyJob job;
