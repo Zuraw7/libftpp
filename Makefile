@@ -18,7 +18,9 @@ SRCS = sources/dataStructures/data_buffer.cpp \
 	   sources/network/server.cpp \
 	   sources/thread/persistent_worker.cpp \
 	   sources/thread/thread.cpp \
-	   sources/thread/worker_pool.cpp
+	   sources/thread/worker_pool.cpp \
+	   sources/time/chronometer.cpp \
+	   sources/time/timer.cpp
 
 OBJS = $(patsubst $(SRC_PATH)%.cpp, $(OBJ_PATH)%.o, $(SRCS))
 

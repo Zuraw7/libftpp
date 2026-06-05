@@ -7,5 +7,6 @@
 #include "./includes/mathematics/mathematics.hpp"
 #include "./includes/network/network.hpp"
 #include "./includes/thread/threading.hpp"
+#include "./includes/time/time.hpp"
 
 #endif
