@@ -48,6 +48,7 @@ Individual modules can also be included directly, e.g.
 | Mathematics | `mathematics/mathematics.hpp` | `IVector2`, `IVector3`, `PerlinNoise2D`, `Random2DCoordinateGenerator` |
 | Threading | `thread/threading.hpp` | `Thread`, `PersistentWorker`, `WorkerPool`, `ThreadSafeQueue<T>` |
 | Networking | `network/network.hpp` | `Message`, `Client`, `Server` (TCP, typed message passing) |
+| Time | `time/time.hpp` | `Chronometer` (stopwatch), `Timer` (countdown) |
 
 ## Documentation
 
