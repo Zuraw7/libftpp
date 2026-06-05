@@ -14,4 +14,7 @@ void observer_tests();
 void singleton_tests();
 void state_machine_tests();
 
+// IOStream
+void thread_safe_iostream_tests();
+
 #endif
