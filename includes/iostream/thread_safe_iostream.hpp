@@ -9,7 +9,7 @@
 /**
  * @brief Thread-safe wrapper around std::cout/std::cin with per-line prefix support.
  *
- * Each thread owns its own instance via thread_local (see threadSafeCount).
+ * Each thread owns its own instance via thread_local (see threadSafeCout).
  * Output is buffered per-instance and flushed atomically on '\n' or std::endl,
  * so lines from concurrent threads never interleave.
  *
@@ -19,15 +19,15 @@
  *
  * @example
  * @code
- * threadSafeCount.setPrefix("[thread1] ");
- * threadSafeCount << "hello\n";    // prints: [thread1] hello
- * threadSafeCount << "age: " << 42 << std::endl;
+ * threadSafeCout.setPrefix("[thread1] ");
+ * threadSafeCout << "hello\n";    // prints: [thread1] hello
+ * threadSafeCout << "age: " << 42 << std::endl;
  * @endcode
  */
 class ThreadSafeIOStream;
 
 /// Thread-local instance - one per thread, usable without manual instantiation.
-extern thread_local ThreadSafeIOStream threadSafeCount;
+extern thread_local ThreadSafeIOStream threadSafeCout;
 
 class ThreadSafeIOStream {
 public:

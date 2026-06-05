@@ -15,7 +15,7 @@
  * object is destroyed. Each iteration copies the task map under a mutex and
  * executes all tasks - so addTask/removeTask take effect on the next iteration.
  *
- * Use threadSafeCount inside tasks for prefixed thread-safe output.
+ * Use threadSafeCout inside tasks for prefixed thread-safe output.
  *
  * @var m_thread   The underlying worker thread.
  * @var m_tasks    Map of named tasks executed each iteration.
@@ -26,7 +26,7 @@ class PersistentWorker {
 public:
     /**
      * @brief Starts the worker thread immediately.
-     * @param threadPrefix Name used as threadSafeCount prefix inside tasks.
+     * @param threadPrefix Name used as threadSafeCout prefix inside tasks.
      */
     PersistentWorker(const std::string& threadPrefix);
     PersistentWorker() = delete;

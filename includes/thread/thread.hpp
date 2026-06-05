@@ -5,7 +5,7 @@
 #include <functional>
 #include <thread>
 
-extern thread_local ThreadSafeIOStream threadSafeCount;
+extern thread_local ThreadSafeIOStream threadSafeCout;
 
 /**
  * @brief Wrapper around std::thread with a name used as a ThreadSafeIOStream prefix.
@@ -14,17 +14,17 @@ extern thread_local ThreadSafeIOStream threadSafeCount;
  * Use stop() to join the thread before the object is destroyed, otherwise std::terminate
  * will be called.
  *
- * Any function passed to the constructor that uses threadSafeCount will automatically
+ * Any function passed to the constructor that uses threadSafeCout will automatically
  * have its output prefixed with "[name] ".
  *
- * @var m_name   Name of the thread, used as prefix for threadSafeCount output.
+ * @var m_name   Name of the thread, used as prefix for threadSafeCout output.
  * @var m_func   Function executed when start() is called.
  * @var m_thread Underlying std::thread, created on start().
  *
  * @example
  * @code
  * Thread t("worker", []() {
- *     threadSafeCount << "hello\n";  // prints: [worker] hello
+ *     threadSafeCout << "hello\n";  // prints: [worker] hello
  * });
  * t.start();
  * t.stop();
@@ -34,7 +34,7 @@ class Thread {
 public:
     /**
      * @brief Sets up thread data. Does not start execution.
-     * @param name          Name used as threadSafeCount prefix inside the thread.
+     * @param name          Name used as threadSafeCout prefix inside the thread.
      * @param funcToExecute Function to run when start() is called.
      */
     Thread(const std::string& name, std::function<void()> funcToExecute);

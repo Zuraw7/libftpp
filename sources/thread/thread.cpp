@@ -7,7 +7,7 @@ Thread::Thread(const std::string& name, std::function<void()> funcToExecute)
 
 void Thread::start() {
     m_thread = std::thread([this]() {
-        threadSafeCount.setPrefix("[" + m_name + "] ");
+        threadSafeCout.setPrefix("[" + m_name + "] ");
         m_func();
     });
 }
