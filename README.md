@@ -32,7 +32,7 @@ Include the umbrella header and link against the archive:
 ```
 
 ```bash
-c++ -std=c++17 your_app.cpp libftpp.a -o your_app -pthread
+c++ -std=c++17 your_app.cpp lib/libftpp.a -o your_app -pthread
 ```
 
 Individual modules can also be included directly, e.g.
