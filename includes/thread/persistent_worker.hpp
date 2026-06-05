@@ -16,11 +16,6 @@
  * executes all tasks - so addTask/removeTask take effect on the next iteration.
  *
  * Use threadSafeCout inside tasks for prefixed thread-safe output.
- *
- * @var m_thread   The underlying worker thread.
- * @var m_tasks    Map of named tasks executed each iteration.
- * @var m_mutex    Protects m_tasks during add/remove/copy operations.
- * @var m_running  Flag set to false on destruction to stop the loop.
  */
 class PersistentWorker {
 public:
@@ -51,10 +46,10 @@ public:
     void clearTasks();
 
 private:
-    Thread m_thread;
-    std::unordered_map<std::string, std::function<void()>> m_tasks;
-    std::mutex m_mutex;
-    std::atomic<bool> m_running = true;
+    Thread m_thread;  ///< The underlying worker thread.
+    std::unordered_map<std::string, std::function<void()>> m_tasks;  ///< Named tasks executed each iteration.
+    std::mutex m_mutex;                 ///< Protects m_tasks during add/remove/copy operations.
+    std::atomic<bool> m_running = true; ///< Set to false on destruction to stop the loop.
 };
 
 #endif

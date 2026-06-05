@@ -9,15 +9,10 @@
 
 /**
  * @brief Per-connection state held by the server for one client.
- *
- * @var sock   File descriptor of the accepted client socket.
- * @var buffer Accumulating byte buffer holding bytes received from this client
- *             until they form complete messages. Persists across update calls
- *             so partially received messages are not lost.
  */
 struct ClientState {
-	int sock = -1;
-	std::vector<std::byte> buffer;
+	int sock = -1;                  ///< File descriptor of the accepted client socket.
+	std::vector<std::byte> buffer;  ///< Bytes received but not yet forming complete messages; persists across update calls.
 };
 
 /**
@@ -28,12 +23,6 @@ struct ClientState {
  * incoming messages, and dispatch them. Messages can be sent to one client
  * (sendTo), a subset (sendToArray), or everyone (sendToAll). Each connected
  * client is identified by a unique, monotonically increasing ID.
- *
- * @var m_nextClientID ID assigned to the next accepted client (never reused).
- * @var m_port         Port the server is listening on.
- * @var m_socket       File descriptor of the listening socket (non-blocking).
- * @var m_clients      Connected clients keyed by client ID.
- * @var m_actions      Map of message type to handler function.
  */
 class Server {
 public:
@@ -66,11 +55,11 @@ public:
 	void update();
 
 private:
-	long long m_nextClientID = 0;
-	size_t m_port = 0;
-	int m_socket = -1;
-	std::map<long long, ClientState> m_clients;
-	std::map<const Message::Type, std::function<void(long long& clientID, const Message& msg)>> m_actions;
+	long long m_nextClientID = 0;  ///< ID assigned to the next accepted client (never reused).
+	size_t m_port = 0;             ///< Port the server is listening on.
+	int m_socket = -1;             ///< File descriptor of the listening socket (non-blocking).
+	std::map<long long, ClientState> m_clients;  ///< Connected clients keyed by client ID.
+	std::map<const Message::Type, std::function<void(long long& clientID, const Message& msg)>> m_actions;  ///< Message type to handler.
 
 };
 

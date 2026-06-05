@@ -13,11 +13,6 @@
  * Output is buffered per-instance and flushed atomically on '\n' or std::endl,
  * so lines from concurrent threads never interleave.
  *
- * @var m_mutex  Shared (static) across all instances - protects std::cout/std::cin.
- * @var m_prefix Per-instance prefix prepended to each flushed line.
- * @var m_buffer Per-instance output buffer, flushed on '\n' or std::endl.
- *
- * @example
  * @code
  * threadSafeCout.setPrefix("[thread1] ");
  * threadSafeCout << "hello\n";    // prints: [thread1] hello
@@ -86,9 +81,9 @@ public:
     ~ThreadSafeIOStream();
 
 private:
-    static std::mutex m_mutex;
-    std::string m_prefix;
-    std::ostringstream m_buffer;
+    static std::mutex m_mutex;    ///< Shared across all instances - protects std::cout/std::cin.
+    std::string m_prefix;         ///< Per-instance prefix prepended to each flushed line.
+    std::ostringstream m_buffer;  ///< Per-instance output buffer, flushed on '\n' or std::endl.
 };
 
 #endif

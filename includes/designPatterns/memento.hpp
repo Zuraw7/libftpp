@@ -9,7 +9,6 @@
  * Inherit from this class to make an object "saveable". The inheriting class must
  * implement _saveToSnapshot() and _loadFromSnapshot() as private methods.
  *
- * @example
  * @code
  * class Player : public Memento {
  * public:

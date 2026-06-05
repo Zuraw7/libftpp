@@ -20,13 +20,6 @@
  * Inside jobs, use threadSafeCout for thread-safe output with the worker's
  * name as prefix (e.g. "[worker_0] message").
  *
- * @var m_threads  Worker threads created on construction.
- * @var m_jobs     Queue of pending jobs, protected by m_mutex.
- * @var m_running  Flag set to false on destruction to signal threads to stop.
- * @var m_mutex    Protects m_jobs and coordinates with m_condVar.
- * @var m_condVar  Wakes idle threads when a new job is added or pool is stopping.
- *
- * @example
  * @code
  * WorkerPool pool(4);
  *
@@ -74,11 +67,11 @@ public:
     void addJob(IJobs* job);
 
 private:
-    std::vector<Thread> m_threads;
-    std::queue<std::function<void()>> m_jobs;
-    std::atomic<bool> m_running = true;
-    std::mutex m_mutex;
-    std::condition_variable m_condVar;
+    std::vector<Thread> m_threads;       ///< Worker threads created on construction.
+    std::queue<std::function<void()>> m_jobs;  ///< Pending jobs, protected by m_mutex.
+    std::atomic<bool> m_running = true;  ///< Set to false on destruction to signal threads to stop.
+    std::mutex m_mutex;                  ///< Protects m_jobs and coordinates with m_condVar.
+    std::condition_variable m_condVar;   ///< Wakes idle threads when a job is added or the pool is stopping.
 };
 
 #endif

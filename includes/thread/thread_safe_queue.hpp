@@ -12,9 +12,6 @@
  * All operations are protected by a single mutex.
  *
  * @tparam TType Type of elements stored in the queue.
- *
- * @var m_queue Internal deque holding the elements.
- * @var m_mutex Protects all accesses to m_queue.
  */
 template<typename TType>
 class ThreadSafeQueue {
@@ -60,8 +57,8 @@ public:
     }
 
 private:
-    std::deque<TType> m_queue;
-    std::mutex m_mutex;
+    std::deque<TType> m_queue;  ///< Internal deque holding the elements.
+    std::mutex m_mutex;         ///< Protects all accesses to m_queue.
 };
 
 #endif

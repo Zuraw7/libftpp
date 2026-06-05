@@ -17,11 +17,6 @@ extern thread_local ThreadSafeIOStream threadSafeCout;
  * Any function passed to the constructor that uses threadSafeCout will automatically
  * have its output prefixed with "[name] ".
  *
- * @var m_name   Name of the thread, used as prefix for threadSafeCout output.
- * @var m_func   Function executed when start() is called.
- * @var m_thread Underlying std::thread, created on start().
- *
- * @example
  * @code
  * Thread t("worker", []() {
  *     threadSafeCout << "hello\n";  // prints: [worker] hello
@@ -46,9 +41,9 @@ public:
     void stop();
 
 private:
-    std::string m_name;
-    std::function<void()> m_func;
-    std::thread m_thread;
+    std::string m_name;            ///< Thread name, used as prefix for threadSafeCout output.
+    std::function<void()> m_func;  ///< Function executed when start() is called.
+    std::thread m_thread;          ///< Underlying std::thread, created on start().
 };
 
 #endif
