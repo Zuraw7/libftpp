@@ -28,7 +28,7 @@ Requires a C++17 compiler. The library is compiled with
 Include the umbrella header and link against the archive:
 
 ```cpp
-#include "includes/libftpp.hpp"
+#include "libftpp.hpp"
 ```
 
 ```bash
