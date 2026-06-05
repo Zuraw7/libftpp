@@ -2,5 +2,6 @@
 #define TESTS_HPP
 
 void data_buffer_tests();
+void pool_tests();
 
 #endif
