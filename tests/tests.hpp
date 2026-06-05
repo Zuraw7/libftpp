@@ -34,4 +34,8 @@ void persistent_worker_tests();
 void thread_safe_queue_tests();
 void worker_pool_tests();
 
+// Time
+void chronometer_tests();
+void timer_tests();
+
 #endif

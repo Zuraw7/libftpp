@@ -34,6 +34,10 @@ int main() {
 	thread_safe_queue_tests();
 	worker_pool_tests();
 
+	std::cout << "\n=== Time ===\n";
+	chronometer_tests();
+	timer_tests();
+
 	std::cout << "\n" << g_pass << " passed, " << g_fail << " failed\n";
 	return g_fail ? 1 : 0;
 }
