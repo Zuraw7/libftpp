@@ -23,6 +23,11 @@ int main() {
 	perlin_noise_2D_tests();
 	random_2D_coordinate_generator_tests();
 
+	std::cout << "\n=== Networking ===\n";
+	message_tests();
+	client_tests();
+	server_tests();
+
 	std::cout << "\n" << g_pass << " passed, " << g_fail << " failed\n";
 	return g_fail ? 1 : 0;
 }

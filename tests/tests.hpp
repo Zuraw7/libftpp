@@ -23,4 +23,9 @@ void ivector3_tests();
 void perlin_noise_2D_tests();
 void random_2D_coordinate_generator_tests();
 
+// Network
+void message_tests();
+void client_tests();
+void server_tests();
+
 #endif
